@@ -1,8 +1,11 @@
 import { Form, useLoaderData, useFetcher } from "react-router-dom";
 import PropTypes from "prop-types";
 
+
+
 export default function Contact() {
   const { contact } = useLoaderData();
+
 
   return (
     <div id="contact">
@@ -25,7 +28,7 @@ export default function Contact() {
           ) : (
             <i>No Name</i>
           )}{" "}
-          {contact.favorite !== undefined && <Favorite contact={contact} />}
+          <Favorite contact={contact} />
         </h1>
 
         {contact.twitter && (
@@ -61,9 +64,7 @@ export default function Contact() {
 
 function Favorite({ contact }) {
   const fetcher = useFetcher();
-  const favorite = fetcher.formData
-    ? fetcher.formData.get("favorite") === "true"
-    : contact.favorite;
+  const favorite = contact.favorite;
 
   return (
     <fetcher.Form method="post">
